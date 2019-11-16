@@ -1,0 +1,34 @@
+@import "assets/styles/variables";
+@import "components/AppHeader/variables";
+@import "variables";
+
+.search-bar {
+  width: 100%;
+  height: $app-header-content-height;
+  display: flex;
+
+  input {
+    width: 100%;
+    font-size: $search-bar-input-font-size;
+    border: none;
+    border-radius: $search-bar-border-radius;
+    padding: $search-bar-icon-margin;
+    color: $primary-font-color;
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+      outline: none;
+    }
+  }
+
+  ::placeholder {
+      color: $tertiary-font-color !important;
+  }
+
+  span {
+    margin-left: $search-bar-icon-margin / 2;
+    margin-right: $search-bar-icon-margin / 2 ;
+  }
+}
+
