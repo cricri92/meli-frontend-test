@@ -11,8 +11,15 @@
 
 .app-header__content {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .app-header-logo {
-  height: $app-header-height - 20px;
+  height: $app-header-content-height;
+}
+
+.app-header__search-bar {
+  width: 100%;
+  margin-left: $app-header-content-margin;
 }
