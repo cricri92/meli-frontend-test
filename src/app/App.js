@@ -1,5 +1,5 @@
 import React from 'react';
-import 'App.scss';
+import 'app/App.scss';
 import {Route, Switch} from "react-router-dom";
 import routes from "routes";
 import AppHeader from "components/AppHeader";
