@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from 'assets/logo.svg';
+import logo2x from 'assets/img/Logo_ML@2x.png';
 import 'App.scss';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo2x} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
