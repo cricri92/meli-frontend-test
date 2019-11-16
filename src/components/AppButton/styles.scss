@@ -1,0 +1,13 @@
+@import "assets/styles/variables";
+
+.app-button {
+  border: none;
+
+  &.app-button--primary {
+    background-color: $primary-action-color;
+  }
+
+  &.app-button--secondary {
+    background-color: $secondary-brand-color;
+  }
+}
