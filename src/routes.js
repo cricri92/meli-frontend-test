@@ -1,5 +1,5 @@
 import Home from "pages/Home";
-import SearchResults from "pages/SearchResults";
+import SearchResults from "pages/products/SearchResults";
 import ProductDetail from "pages/ProductDetail";
 
 const routes = [
