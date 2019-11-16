@@ -8,15 +8,17 @@ function App() {
   return (
     <>
       <AppHeader />
-      <Switch>
-        {
-          routes.map(({path, Component}) => (
-            <Route exact path={path} key={path}>
-              <Component/>
-            </Route>
-          ))
-        }
-      </Switch>
+      <div className="app">
+        <Switch>
+          {
+            routes.map(({path, Component}) => (
+              <Route exact path={path} key={path}>
+                <Component/>
+              </Route>
+            ))
+          }
+        </Switch>
+      </div>
     </>
   );
 }

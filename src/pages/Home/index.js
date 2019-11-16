@@ -5,7 +5,6 @@ import './styles.scss';
 function Home() {
   return (
     <div>
-      Home page!
     </div>
   );
 }
