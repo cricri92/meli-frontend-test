@@ -1,0 +1,18 @@
+@import "assets/styles/variables";
+@import "variables";
+
+.app-header {
+  height: $app-header-height;
+  width: 100%;
+  background-color: $primary-brand-color;
+  display: flex;
+  align-items: center;
+}
+
+.app-header__content {
+  display: flex;
+}
+
+.app-header-logo {
+  height: $app-header-height - 20px;
+}

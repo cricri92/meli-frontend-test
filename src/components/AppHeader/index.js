@@ -1,12 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import AppBrandLogo from "components/AppBrandLogo";
 import './styles.scss';
 
 function AppHeader() {
   return (
-    <div>
-        AppHeader component!
-    </div>
+    <nav className="app-header">
+      <div className="app-header__content container">
+          <AppBrandLogo classNames={'app-header-logo'} />
+      </div>
+    </nav>
   );
 }
 
