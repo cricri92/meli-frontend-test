@@ -1,6 +1,8 @@
 import React from 'react';
 import logo2x from 'assets/img/Logo_ML@2x.png';
 import 'App.scss';
+import {Route, Switch} from "react-router-dom";
+import routes from "routes";
 
 function App() {
   return (
@@ -18,8 +20,16 @@ function App() {
         >
           Learn React
         </a>
-      <button className="btn btn-sm btn-primary">button</button>
       </header>
+      <Switch>
+        {
+          routes.map(({path, Component}) => (
+            <Route exact path={path}>
+              <Component/>
+            </Route>
+          ))
+        }
+      </Switch>
     </div>
   );
 }
