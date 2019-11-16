@@ -1,5 +1,4 @@
 import React from 'react';
-import logo2x from 'assets/img/Logo_ML@2x.png';
 import 'App.scss';
 import {Route, Switch} from "react-router-dom";
 import routes from "routes";
@@ -12,7 +11,7 @@ function App() {
       <Switch>
         {
           routes.map(({path, Component}) => (
-            <Route exact path={path}>
+            <Route exact path={path} key={path}>
               <Component/>
             </Route>
           ))
