@@ -1,10 +1,16 @@
 @import "assets/styles/variables";
+@import "variables";
 
 .app-button {
   border: none;
 
   &.app-button--primary {
     background-color: $primary-action-color;
+    border-radius: $app-button-primary-border-radius;
+    width: 100%;
+    padding: $app-button-primary-content-padding;
+    color: white;
+    font-size: $app-button-primary-font-size;
   }
 
   &.app-button--secondary {
