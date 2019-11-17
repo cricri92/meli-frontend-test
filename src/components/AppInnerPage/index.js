@@ -8,13 +8,12 @@ import './styles.scss';
 
 function AppInnerPage({ classNames, children }) {
   return (
-    <div className={
-      classnames({
-        "app-inner-page container": true,
-        [classNames]: classNames !== undefined
-      })}>
+    <div className="app-inner-page container">
         <AppBreadcrumb />
-        <div className="app-inner-page__content">
+        <div className={classnames({
+          "app-inner-page__content container": true,
+          [classNames]: classNames !== undefined
+      } )}>
           {children}
         </div>
     </div>
