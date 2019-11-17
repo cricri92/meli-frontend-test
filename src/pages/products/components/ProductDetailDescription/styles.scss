@@ -1,0 +1,16 @@
+@import "assets/styles/variables";
+@import "pages/products/ProductDetail/variables";
+
+.product-detail-description {
+  max-width: $product-detail-thumbnail-size;
+}
+
+.product-detail-description__title  {
+  font-size: 28px;
+}
+
+.product-detail-description__text  {
+  font-size: 16px;
+  color: $tertiary-font-color;
+  margin-bottom: 0;
+}
