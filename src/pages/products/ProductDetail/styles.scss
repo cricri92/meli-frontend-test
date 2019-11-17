@@ -2,13 +2,16 @@
 @import "variables";
 
 .product-detail {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
   padding: $app-content-long-margin !important;
 }
 
-.product-detail__thumbnail {
+.product-detail-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.product-detail-content__thumbnail {
   width: $product-detail-thumbnail-size;
   min-width: $product-detail-thumbnail-size;
   max-width: $product-detail-thumbnail-size;

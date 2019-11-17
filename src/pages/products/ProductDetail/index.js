@@ -4,13 +4,16 @@ import {withRouter} from "react-router-dom";
 import AppInnerPage from "components/AppInnerPage";
 import AppThumbnail from "components/AppThumbnail";
 import AppMainTitle from "components/AppMainTitle";
+import AppButton from "components/AppButton";
 
 import {PRODUCTS_LIST} from "pages/products/components/ProductsList/mockup";
+import {PRIMARY_BUTTON} from "components/AppButton/constants";
 
 import ProductConditions from "pages/products/components/ProductConditions";
 import ProductPrice from "pages/products/components/ProductPrice";
 
 import './styles.scss';
+import ProductDetailDescription from "pages/products/components/ProductDetailDescription";
 
 class ProductDetail extends Component {
   state = {
@@ -27,26 +30,41 @@ class ProductDetail extends Component {
     });
   }
 
+  handleBuyProductClick() {
+    console.log('buying product');
+  }
+
   render() {
     const {product} = this.state;
-
-    console.log(product);
 
     return (
       product ?
         <AppInnerPage classNames="product-detail">
-          <AppThumbnail title={product.title}
-                        thumbnail={product.thumbnail}
-                        classNames="product-detail__thumbnail"/>
-           <div className="product-detail-info">
-            <ProductConditions product={product}/>
-            <div className="divider divider--min">
-              <AppMainTitle title={product.title} />
-            </div>
-             <div className="divider divider--max">
-               <ProductPrice currency={product.currency} price={product.price} classNames="product-detail-info__price" />
+          <div className="product-detail-content">
+            <AppThumbnail title={product.title}
+                          thumbnail={product.thumbnail}
+                          classNames="product-detail-content__thumbnail"/>
+             <div className="product-detail-info">
+              <ProductConditions product={product}/>
+              <div className="divider divider--min">
+                <AppMainTitle title={product.title} />
+              </div>
+               <div className="divider divider--max">
+                 <ProductPrice currency={product.currency_id}
+                               price={product.price}
+                               classNames="product-detail-info__price" />
+               </div>
+               <div className="divider divider--max">
+                 <AppButton type={PRIMARY_BUTTON}
+                            actionToExecute={this.handleBuyProductClick}>
+                   Comprar
+                 </AppButton>
+               </div>
              </div>
-           </div>
+          </div>
+          <div className="divider divider--max">
+            <ProductDetailDescription product={product} />
+          </div>
         </AppInnerPage>
       :
         null
