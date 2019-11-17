@@ -12,8 +12,9 @@ import {PRIMARY_BUTTON} from "components/AppButton/constants";
 import ProductConditions from "pages/products/components/ProductConditions";
 import ProductPrice from "pages/products/components/ProductPrice";
 
-import './styles.scss';
 import ProductDetailDescription from "pages/products/components/ProductDetailDescription";
+
+import './styles.scss';
 
 class ProductDetail extends Component {
   state = {

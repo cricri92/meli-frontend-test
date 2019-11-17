@@ -5,7 +5,7 @@ import AppInnerPage from "components/AppInnerPage";
 import ProductsList from "pages/products/components/ProductsList";
 import { PRODUCTS_LIST } from "pages/products/components/ProductsList/mockup";
 
-import 'pages/products/SearchResults/styles.scss';
+import './styles.scss';
 
 class SearchResults extends Component {
   state = {

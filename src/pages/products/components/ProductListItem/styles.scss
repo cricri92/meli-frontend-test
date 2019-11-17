@@ -4,13 +4,20 @@
 
 .product-list-item {
   width: 100%;
+  height: $product-list-item-thumbnail-size + $app-content-short-margin;
   display: flex;
   justify-content: flex-start;
   margin-top: $app-content-basic-margin;
-  margin-bottom: $app-content-basic-margin;
+  border-bottom: 1px solid $tertiary-font-color;
 
   &:first-child {
     margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+    border: none;
+    height: $product-list-item-thumbnail-size;
   }
 }
 
