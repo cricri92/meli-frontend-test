@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PRODUCT_CONDITIONS, {MULTIPLE_SELLED_PRODUCTS, ONE_SELLED_PRODUCT} from "pages/products/ProductDetail/constants";
+import PRODUCT_CONDITIONS, {MULTIPLE_SELLED_PRODUCTS, ONE_SELLED_PRODUCT} from "pages/products/components/ProductConditions/constants";
 
 import './styles.scss';
 
