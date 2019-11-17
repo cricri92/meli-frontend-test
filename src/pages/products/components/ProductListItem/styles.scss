@@ -1,3 +1,4 @@
+@import "assets/styles/variables";
 @import "app/variables";
 @import "variables";
 
@@ -49,4 +50,5 @@
 
 .product-location {
   font-size: $product-list-item-location-font-size;
+  color: $secondary-font-color;
 }
