@@ -3,12 +3,14 @@ import {withRouter} from "react-router-dom";
 
 import AppInnerPage from "components/AppInnerPage";
 import AppThumbnail from "components/AppThumbnail";
+import AppMainTitle from "components/AppMainTitle";
 
 import {PRODUCTS_LIST} from "pages/products/components/ProductsList/mockup";
 
-import 'pages/products/ProductDetail/styles.scss';
-import PRODUCT_CONDITIONS, {MULTIPLE_SELLED_PRODUCTS, ONE_SELLED_PRODUCT} from "pages/products/components/ProductConditions/constants";
 import ProductConditions from "pages/products/components/ProductConditions";
+import ProductPrice from "pages/products/components/ProductPrice";
+
+import './styles.scss';
 
 class ProductDetail extends Component {
   state = {
@@ -38,6 +40,12 @@ class ProductDetail extends Component {
                         classNames="product-detail__thumbnail"/>
            <div className="product-detail-info">
             <ProductConditions product={product}/>
+            <div className="divider divider--min">
+              <AppMainTitle title={product.title} />
+            </div>
+             <div className="divider divider--max">
+               <ProductPrice currency={product.currency} price={product.price} classNames="product-detail-info__price" />
+             </div>
            </div>
         </AppInnerPage>
       :

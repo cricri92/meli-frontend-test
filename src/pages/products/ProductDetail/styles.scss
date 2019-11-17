@@ -12,12 +12,14 @@
   width: $product-detail-thumbnail-size;
   min-width: $product-detail-thumbnail-size;
   max-width: $product-detail-thumbnail-size;
-  height: $product-detail-thumbnail-size;
+  height: auto;
 }
 
 .product-detail-info {
-  display: flex;
-  justify-content: flex-start;
   width: 100%;
   margin-left: $app-content-basic-margin;
+}
+
+.product-detail-info__price {
+  font-size: $product-detail-price-font-size;
 }
