@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles.scss';
+import 'pages/products/ProductDetail/styles.scss';
 
 function ProductDetail() {
   return (
