@@ -6,7 +6,7 @@ import './styles.scss';
 
 function ProductConditions({ product }) {
   return (
-    <>
+    <div>
       <span className="product-condition">
         {PRODUCT_CONDITIONS[product.condition].displayName}
       </span>
@@ -17,12 +17,12 @@ function ProductConditions({ product }) {
           </span>
 				)
       }
-      </>
+      </div>
   );
 }
 
 ProductConditions.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object.isRequired
 };
 
 export default ProductConditions;
