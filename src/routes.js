@@ -1,6 +1,6 @@
 import Home from "pages/Home";
-import SearchResults from "pages/products/SearchResults";
-import ProductDetail from "pages/products/ProductDetail";
+import SearchResults from "pages/products/pages/SearchResults";
+import ProductDetail from "pages/products/pages/ProductDetail";
 
 const routes = [
   {
