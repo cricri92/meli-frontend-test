@@ -1,20 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
-import './styles.scss';
-import ProductPrice from "pages/products/components/ProductPrice";
-import AppIcon from "components/AppIcon";
 import {SHIPPING_ICON} from "components/AppIcon/constants";
+
+import AppIcon from "components/AppIcon";
 import AppThumbnail from "components/AppThumbnail";
 import AppSecondaryTitle from "components/AppSecondaryTitle";
+import ProductPrice from "pages/products/components/ProductPrice";
+
+import './styles.scss';
 
 function ProductListItem({ product }) {
+  const productLink = `/items/${product.id}`;
+
   return (
     <li className="product-list-item">
-      <AppThumbnail
-        thumbnail={product.thumbnail}
-        title={product.title}
-        classNames="product-list-item__thumbnail" />
+      <Link to={productLink} className="product-list-item-link">
+        <AppThumbnail
+          thumbnail={product.thumbnail}
+          title={product.title}
+          classNames="product-list-item__thumbnail" />
+      </Link>
         <div className="product-list-item-content">
           <div className="product-info">
             <div className="product-info__item">
@@ -27,7 +34,9 @@ function ProductListItem({ product }) {
                 } />
             </div>
             <div className="product-info__item">
-              <AppSecondaryTitle title={product.title} />
+              <Link to={productLink} className="product-list-item-link">
+                <AppSecondaryTitle title={product.title} />
+              </Link>
             </div>
           </div>
           <span className="product-location">
