@@ -8,7 +8,9 @@ function ProductsList({ productsList }) {
     <ul className="products-list">
         {
           productsList.map(product =>
-            <li>{JSON.stringify(product)}</li>
+            <li className="products-list__item">
+              {JSON.stringify(product)}
+            </li>
           )
         }
     </ul>
