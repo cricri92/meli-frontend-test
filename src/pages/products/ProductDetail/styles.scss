@@ -1,0 +1,23 @@
+@import "app/variables";
+@import "variables";
+
+.product-detail {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: $app-content-long-margin !important;
+}
+
+.product-detail__thumbnail {
+  width: $product-detail-thumbnail-size;
+  min-width: $product-detail-thumbnail-size;
+  max-width: $product-detail-thumbnail-size;
+  height: $product-detail-thumbnail-size;
+}
+
+.product-detail-info {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: $app-content-basic-margin;
+}
