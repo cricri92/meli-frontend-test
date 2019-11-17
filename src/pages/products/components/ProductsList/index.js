@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ProductListItem from "pages/products/components/ProductListItem";
+
 import './styles.scss';
 
 function ProductsList({ productsList }) {
@@ -8,9 +10,7 @@ function ProductsList({ productsList }) {
     <ul className="products-list">
         {
           productsList.map(product =>
-            <li className="products-list__item">
-              {JSON.stringify(product)}
-            </li>
+            <ProductListItem product={product} key={product.id} />
           )
         }
     </ul>
