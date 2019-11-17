@@ -15,7 +15,7 @@ function ProductListItem({ product }) {
   const productLink = `/items/${product.id}`;
 
   return (
-    <li className="product-list-item divider divider--min">
+    <li className="product-list-item">
       <Link to={productLink} className="product-list-item-link">
         <AppThumbnail
           thumbnail={product.thumbnail}
