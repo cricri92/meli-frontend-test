@@ -1,0 +1,15 @@
+@import "variables";
+
+.app {
+  margin-top: $app-content-short-margin;
+}
+
+.divider {
+  &.divider--min {
+    margin-top: $app-content-short-margin;
+  }
+
+  &.divider--max {
+    margin-top: $app-content-long-margin;
+  }
+}

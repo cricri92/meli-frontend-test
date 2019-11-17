@@ -1,0 +1,10 @@
+@import "assets/styles/variables";
+@import "app/variables";
+@import "variables";
+
+.app-breadcrumb {
+  color: $secondary-font-color;
+  display: block;
+  font-size: $app-breadcrumb-font-size;
+  margin-bottom: $app-content-short-margin;
+}

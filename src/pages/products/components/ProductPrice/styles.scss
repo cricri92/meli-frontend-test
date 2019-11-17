@@ -1,0 +1,10 @@
+@import "app/variables";
+
+.product-price {
+  display: flex;
+  line-height: 1;
+}
+
+.product-price__add-ons {
+  margin-left: $app-content-basic-margin;
+}

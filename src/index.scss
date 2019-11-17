@@ -1,0 +1,7 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "assets/styles/variables";
+
+body {
+  background-color: $secondary-brand-color;
+  color: $primary-font-color;
+}
