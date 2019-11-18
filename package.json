@@ -4,6 +4,9 @@
   "description": "Frontend engineer ML test",
   "main": "server.js",
   "scripts": {
+    "client": "cd client && npm start",
+    "server": "node server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "test": "test"
   },
   "repository": {
@@ -15,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/cricri92/meli-frontend-test/issues"
   },
-  "homepage": "https://github.com/cricri92/meli-frontend-test#readme"
+  "homepage": "https://github.com/cricri92/meli-frontend-test#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  }
 }
