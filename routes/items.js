@@ -10,8 +10,11 @@ router.get('/', async function(req, res, next) {
   res.json(results);
 });
 
-router.get('/:id', function (req, res, next) {
-  res.json({ express: req.params })
+router.get('/:id', async function (req, res, next) {
+  const { id } = req.params;
+  const item = await itemsService.getItem(id);
+
+  res.json(item);
 });
 
 module.exports = router;
