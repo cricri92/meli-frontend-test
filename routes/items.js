@@ -1,13 +1,19 @@
 const express = require('express');
 const router = express.Router();
+
 const itemsService = require('../services/items');
 const searchService = require('../services/search');
+
+const itemsMiddleware = require('../middleware/items');
 
 router.get('/', async function(req, res, next) {
   const { q } = req.query;
   const results = await searchService.getResults(q || '');
+  const { formatItemsResults } = itemsMiddleware;
 
-  res.json(results);
+  const formattedResults = formatItemsResults(results);
+
+  res.json(formattedResults);
 });
 
 router.get('/:id', async function (req, res, next) {

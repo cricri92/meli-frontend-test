@@ -1,14 +1,14 @@
 const fetch = require('node-fetch');
-const searchAPIurl = 'sites/MLA';
+const SEARCH_API_URL = 'sites/MLA';
+const SEARCH_QUERY = 'search?q=';
 
 const searchService = {
 	getResults(query) {
 		return new Promise((resolve, reject) => {
-			console.log(`${process.env.API_URL}/${searchAPIurl}/search?q=${query}`);
-			fetch(`${process.env.API_URL}/${searchAPIurl}/search?q=${query}`)
-			.then(response => {
-				resolve(response.json());
-			})
+			fetch(`${process.env.API_URL}/${SEARCH_API_URL}/${SEARCH_QUERY}${query}`)
+				.then(response => {
+					resolve(response.json());
+				})
 		});
 	},
 };
