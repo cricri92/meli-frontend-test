@@ -1,13 +1,21 @@
 const fetch = require('node-fetch');
-const itemsAPIurl = 'items';
+const ITEMS_API_URL = 'items';
 
 const itemsService = {
 	getItem(itemId) {
 		return new Promise((resolve, reject) => {
-			fetch(`${process.env.API_URL}/${itemsAPIurl}/${itemId}`)
+			fetch(`${process.env.API_URL}/${ITEMS_API_URL}/${itemId}`)
 				.then(response => {
-					resolve(response.json());
-				});
+					const res = response.json();
+
+					if (res.error) {
+						reject(res)
+					} else {
+						resolve(res);
+					}
+				}).catch(error => {
+					reject(error)
+				})
 		})
 	}
 };

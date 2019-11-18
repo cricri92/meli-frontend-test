@@ -7,8 +7,14 @@ const searchService = {
 		return new Promise((resolve, reject) => {
 			fetch(`${process.env.API_URL}/${SEARCH_API_URL}/${SEARCH_QUERY}${query}`)
 				.then(response => {
-					resolve(response.json());
-				})
+					const res = response.json();
+
+					if (res.error) {
+						reject(res)
+					} else {
+						resolve(res);
+					}
+				}).catch(error => { reject(error) })
 		});
 	},
 };

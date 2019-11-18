@@ -11,14 +11,14 @@ router.get('/', async function(req, res, next) {
   const { q } = req.query;
   const results = await searchService.getResults(q || '');
 
-  res.json(formatItemsResults(results));
+  res.json(!results.error ? formatItemsResults(results) : results);
 });
 
 router.get('/:id', async function (req, res, next) {
   const { id } = req.params;
   const item = await itemsService.getItem(id);
 
-  res.json(formatItemResult(item));
+  res.json(!item.error ? formatItemResult(item) : item);
 });
 
 module.exports = router;
