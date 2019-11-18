@@ -8,14 +8,8 @@ const {
 	MULTIPLE_SELLED_PRODUCTS
 } = require('../constants/product_conditions');
 
-const itemsMiddleware = {
-	formatItemsResults(searchResults) {
-		const { results, filters } = searchResults;
-		const categories = filters.find(items => items.id === CATEGORY_ID_NAME) || null;
-
+function formatItemResult(result) {
 		return {
-			categories,
-			items: results.map(result => ({
 				id: result.id,
 				title: result.title,
 				price: {
@@ -28,8 +22,21 @@ const itemsMiddleware = {
 				condition: PRODUCT_CONDITIONS[result.condition].displayName,
 				sold_quantity: result.sold_quantity > 0 ? `${result.sold_quantity} ${result.sold_quantity === 1 ? PRODUCT_CONDITIONS[ONE_SELLED_PRODUCT].displayName : PRODUCT_CONDITIONS[MULTIPLE_SELLED_PRODUCTS].displayName}` : null,
 				free_shipping: result.shipping.free_shipping
-			}))
+			};
+	}
+
+const itemsMiddleware = {
+	formatItemsResults(searchResults) {
+		const { results, filters } = searchResults;
+		const categories = filters.find(items => items.id === CATEGORY_ID_NAME) || null;
+
+		return {
+			categories,
+			items: results.map(result => formatItemResult(result))
 		};
+	},
+	formatItemResult(result) {
+		return formatItemResult(result);
 	}
 };
 
