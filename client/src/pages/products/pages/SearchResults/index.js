@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
+import {withRouter} from "react-router-dom";
 
 import AppInnerPage from "components/AppInnerPage";
+import AppMainTitle from "components/AppMainTitle";
 
 import ProductsList from "pages/products/components/ProductsList";
-import { PRODUCTS_LIST } from "pages/products/components/ProductsList/mockup";
+
+import SearchService from "services/Search";
 
 import './styles.scss';
 
 class SearchResults extends Component {
   state = {
-    productsList: []
+    productsList: null
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    const query = queryString.parse(this.props.location.search);
+
+    const { search } = query;
+    const { items, categories } = await SearchService.getResults(search);
+
     this.setState({
-      productsList: PRODUCTS_LIST
+      productsList: items,
+      categories
     })
   }
 
   render() {
     const { productsList } = this.state;
 
+    // TODO: manejar paginas de no existencia de recursos
     return (
-    <AppInnerPage classNames="search-results">
-      <ProductsList productsList={productsList} />
-    </AppInnerPage>
+      <AppInnerPage classNames="search-results">
+        {
+          productsList &&
+            <ProductsList productsList={productsList} />
+        }
+        {
+          !productsList &&
+            <AppMainTitle title="Cargando resultados..." />
+        }
+      </AppInnerPage>
   );
   }
 }
@@ -33,4 +51,4 @@ SearchResults.propTypes = {
   //
 };
 
-export default SearchResults;
+export default withRouter(SearchResults);
