@@ -22,7 +22,8 @@ function formatItemResult(result) {
 				condition: PRODUCT_CONDITIONS[result.condition].displayName,
 				sold_quantity: result.sold_quantity > 0 ? `${result.sold_quantity} ${result.sold_quantity === 1 ? PRODUCT_CONDITIONS[ONE_SELLED_PRODUCT].displayName : PRODUCT_CONDITIONS[MULTIPLE_SELLED_PRODUCTS].displayName}` : null,
 				free_shipping: result.shipping.free_shipping,
-				description: result.description ? result.description.plain_text : null
+				description: result.description ? result.description.plain_text : null,
+				address: result.address,
 			};
 	}
 
