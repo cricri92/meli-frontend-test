@@ -16,7 +16,7 @@ function formatItemResult(result) {
 					currency: result.currency_id,
 					amount: Math.floor(result.price),
 					decimals: parseInt((result.price % 1).toFixed(2).substr(2)),
-					currency_symbol: CURRENCIES.LIST.find(currency => currency.iso === result.currency_id) || CURRENCIES.DEFAULT_CURRENCY_SYMBOL
+					currency_detail: CURRENCIES.LIST.find(currency => currency.iso === result.currency_id) || CURRENCIES.DEFAULT_CURRENCY_SYMBOL
 				},
 				picture: result.thumbnail,
 				condition: PRODUCT_CONDITIONS[result.condition].displayName,
