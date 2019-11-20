@@ -18,6 +18,7 @@ class SearchResults extends Component {
 
   async componentDidMount() {
     const query = queryString.parse(this.props.location.search);
+    console.log(query);
 
     const { search } = query;
     const { items, categories } = await SearchService.getResults(search);
