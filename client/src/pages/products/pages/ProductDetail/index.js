@@ -58,7 +58,7 @@ class ProductDetail extends Component {
                                classNames="product-detail-info__price" />
                </div>
                <div className="divider divider--max">
-                 <AppButton type={PRIMARY_BUTTON}
+                 <AppButton buttonType={PRIMARY_BUTTON}
                             actionToExecute={this.handleBuyProductClick}>
                    Comprar
                  </AppButton>
