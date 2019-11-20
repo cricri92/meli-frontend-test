@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {useHistory, useParams, withRouter} from 'react-router-dom';
+import { useHistory, useLocation, withRouter} from 'react-router-dom';
+import queryString from 'query-string';
 
 import {SECONDARY_BUTTON} from "components/AppButton/constants";
 import {SEARCH_ICON} from "components/AppIcon/constants";
@@ -9,38 +10,55 @@ import AppIcon from "components/AppIcon";
 
 import './styles.scss';
 
-function SearchBar() {
-  const [ searchValue, setSearchValue ] = useState(null);
-  const history = useHistory();
-  const params = useParams();
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
+function SearchBar() {
+  const location = useLocation();
+  const query = queryString.parse(location.search);
+
+  let history = useHistory();
+  const [searchValue, setSearchValue] = useState(query ? query.search : null);
   const searchActionCall = 'Nunca dejes de buscar';
 
-  function setParams({ query = ""}) {
-    const searchParams = new URLSearchParams();
-    searchParams.set("search", query);
-    return searchParams.toString();
+  function handleInputChange({ target }) {
+    setSearchValue(target.value)
   }
 
-  function handleSearchButtonClick() {
-    const url = setParams({ query: searchValue || '' });
+  const handleSearchButtonClick = () => {
+    if (searchValue) {
+      history.push(`items?search=${searchValue}`)
+    } else {
+      history.push('/')
+    }
+  };
 
-    history.push(`/items?${url}`);
+  if (searchValue !== query.search) {
+    handleSearchButtonClick()
+  }
+
+  function onKeyPressed(event) {
+    if (event.key === 'Enter') {
+      handleSearchButtonClick();
+    }
   }
 
   return (
-    <div className="search-bar">
-      <input type="text"
-             onChange={({target}) => setSearchValue(target.value)}
-             placeholder={searchActionCall}
-             value={searchValue} />
-      <AppButton actionToExecute={e => handleSearchButtonClick()} type={SECONDARY_BUTTON}>
+      <div className="search-bar">
+        <input type="text"
+               onChange={e => handleInputChange(e)}
+               placeholder={searchActionCall}
+                onKeyPress={onKeyPressed}/>
+        <AppButton
+          actionToExecute={handleSearchButtonClick}
+          buttonType={SECONDARY_BUTTON}>
         <span>
           <AppIcon description={searchActionCall} iconType={SEARCH_ICON}/>
         </span>
-      </AppButton>
-     </div>
-  );
+        </AppButton>
+      </div>
+    );
 }
 
 SearchBar.propTypes = {

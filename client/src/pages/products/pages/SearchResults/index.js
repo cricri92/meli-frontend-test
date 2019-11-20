@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {useState}  from 'react';
 import queryString from 'query-string';
-import {withRouter} from "react-router-dom";
+import {withRouter, useLocation, Redirect} from "react-router-dom";
 
 import AppInnerPage from "components/AppInnerPage";
 import AppMainTitle from "components/AppMainTitle";
@@ -11,41 +11,48 @@ import SearchService from "services/Search";
 
 import './styles.scss';
 
-class SearchResults extends Component {
-  state = {
-    productsList: null
+function SearchResults() {
+  const [productsList, setProductsList] = useState(null);
+  const [categories, setCategories] = useState(null);
+
+  const location = useLocation();
+
+  const query = queryString.parse(location.search);
+  const { search } = query;
+
+  const [querySearch, setQuerySearch] = useState(search);
+
+  const setProductsListItem = async () => {
+      const query = queryString.parse(location.search);
+      const { search } = query;
+
+      if (search !== querySearch) {
+        setQuerySearch(search);
+        const { items, categories } = await SearchService.getResults(search);
+
+        setProductsList(items);
+        setCategories(categories);
+      }
   };
 
-  async componentDidMount() {
-    const query = queryString.parse(this.props.location.search);
-    console.log(query);
-
-    const { search } = query;
-    const { items, categories } = await SearchService.getResults(search);
-
-    this.setState({
-      productsList: items,
-      categories
-    })
+  if (search) {
+    setProductsListItem()
+  } else {
+    return <Redirect to={'/'} />
   }
 
-  render() {
-    const { productsList } = this.state;
-
-    // TODO: manejar paginas de no existencia de recursos
-    return (
+  return (
       <AppInnerPage classNames="search-results">
-        {
-          productsList &&
-            <ProductsList productsList={productsList} />
-        }
-        {
-          !productsList &&
-            <AppMainTitle title="Cargando resultados..." />
-        }
-      </AppInnerPage>
-  );
-  }
+         {
+           productsList &&
+             <ProductsList productsList={productsList} />
+         }
+         {
+           !productsList &&
+             <AppMainTitle title="Cargando resultados..." />
+         }
+       </AppInnerPage>
+   );
 }
 
 SearchResults.propTypes = {
