@@ -1,5 +1,4 @@
 const CURRENCIES = require('../constants/currencies');
-
 const CATEGORY_ID_NAME = 'category';
 
 const {
