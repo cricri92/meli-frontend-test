@@ -1,3 +1,4 @@
+@import "assets/styles/variables";
 @import "app/variables";
 @import "variables";
 
@@ -11,10 +12,22 @@
   width: 100%;
 }
 
-.product-detail-content__thumbnail {
+.product-detail-header {
+  margin-bottom: $app-content-basic-margin;
+}
+
+.product-detail-button {
+  border: 1px solid $tertiary-font-color;
+  font-size: 14px;
+}
+
+.product-detail-picture {
   width: $product-detail-thumbnail-size;
   min-width: $product-detail-thumbnail-size;
   max-width: $product-detail-thumbnail-size;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   height: auto;
 }
 

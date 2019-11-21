@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {withRouter, useParams} from "react-router-dom";
+import {withRouter, useParams, useHistory} from "react-router-dom";
 
 import AppInnerPage from "components/AppInnerPage";
 import AppThumbnail from "components/AppThumbnail";
 import AppMainTitle from "components/AppMainTitle";
 import AppButton from "components/AppButton";
-import AppBreadcrumb from "components/AppBreadcrumb";
 
-import {PRIMARY_BUTTON} from "components/AppButton/constants";
+import {PRIMARY_BUTTON, SECONDARY_BUTTON} from "components/AppButton/constants";
 import {PRODUCT_DETAIL_ADD_TO_CART_BUTTON_TEXT, PRODUCT_DETAIL_LOADING_TEXT} from "./constants";
 
 import ProductConditions from "pages/products/components/ProductConditions";
@@ -20,6 +19,7 @@ import ItemsService from "services/Items";
 import './styles.scss';
 
 function ProductDetail() {
+  const history = useHistory();
   const [product, setProduct] = useState(null);
   const { id } = useParams();
 
@@ -38,10 +38,19 @@ function ProductDetail() {
     console.log('buying product');
   }
 
+  function goBack() {
+    history.goBack();
+  }
+
   return (
         <AppInnerPage classNames="product-detail"
           headerComponent={
-            product && !product.error && <AppBreadcrumb categories={product ? product.categories : null} />
+            <div className="product-detail-header">
+              <AppButton buttonType={SECONDARY_BUTTON}
+                         actionToExecute={goBack}>
+                {`< Volver al listado`}
+              </AppButton>
+            </div>
           }>
           {
             !product && <AppMainTitle title={PRODUCT_DETAIL_LOADING_TEXT} />
@@ -55,9 +64,11 @@ function ProductDetail() {
             product && product.id && (
               <>
                 <div className="product-detail-content">
-                  <AppThumbnail title={product.title}
+                  <div className="product-detail-picture">
+                    <AppThumbnail title={product.title}
                                 thumbnail={product.picture}
                                 classNames="product-detail-content__thumbnail"/>
+                  </div>
                    <div className="product-detail-info">
                     <ProductConditions product={product}/>
                     <div className="divider divider--min">
