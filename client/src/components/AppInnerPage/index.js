@@ -6,10 +6,10 @@ import AppBreadcrumb from "components/AppBreadcrumb";
 
 import './styles.scss';
 
-function AppInnerPage({ classNames, children }) {
+function AppInnerPage({ classNames, children, headerComponent }) {
   return (
     <div className="app-inner-page container">
-        <AppBreadcrumb />
+        {headerComponent || <AppBreadcrumb />}
         <div className={classnames({
           "app-inner-page__content container": true,
           [classNames]: classNames !== undefined

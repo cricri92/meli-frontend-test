@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation, withRouter} from 'react-router-dom';
 import queryString from 'query-string';
 
@@ -10,32 +10,31 @@ import AppIcon from "components/AppIcon";
 
 import './styles.scss';
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 function SearchBar() {
   const location = useLocation();
-  const query = queryString.parse(location.search);
 
   let history = useHistory();
-  const [searchValue, setSearchValue] = useState(query ? query.search : null);
+  const [searchValue, setSearchValue] = useState(null);
   const searchActionCall = 'Nunca dejes de buscar';
+
+  useEffect(() => {
+    const query = queryString.parse(location.search);
+
+    if (query.search && searchValue !== query.search) {
+      setSearchValue(searchValue);
+    }
+  }, [location.search, searchValue]);
 
   function handleInputChange({ target }) {
     setSearchValue(target.value)
   }
 
-  const handleSearchButtonClick = () => {
+  function handleSearchButtonClick() {
     if (searchValue) {
       history.push(`items?search=${searchValue}`)
     } else {
       history.push('/')
     }
-  };
-
-  if (searchValue !== query.search) {
-    handleSearchButtonClick()
   }
 
   function onKeyPressed(event) {
@@ -49,7 +48,7 @@ function SearchBar() {
         <input type="text"
                onChange={e => handleInputChange(e)}
                placeholder={searchActionCall}
-                onKeyPress={onKeyPressed}/>
+               onKeyPress={onKeyPressed} />
         <AppButton
           actionToExecute={handleSearchButtonClick}
           buttonType={SECONDARY_BUTTON}>
