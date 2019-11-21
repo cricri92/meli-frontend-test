@@ -1,36 +1,53 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect}  from 'react';
+import queryString from 'query-string';
+import {withRouter, useLocation} from "react-router-dom";
 
 import AppInnerPage from "components/AppInnerPage";
+import AppMainTitle from "components/AppMainTitle";
 
 import ProductsList from "pages/products/components/ProductsList";
-import { PRODUCTS_LIST } from "pages/products/components/ProductsList/mockup";
+
+import SearchService from "services/Search";
 
 import './styles.scss';
 
-class SearchResults extends Component {
-  state = {
-    productsList: []
-  };
+function SearchResults() {
+  const [productsList, setProductsList] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [querySearch, setQuerySearch] = useState(null);
+  const location = useLocation();
 
-  componentDidMount() {
-    this.setState({
-      productsList: PRODUCTS_LIST
-    })
-  }
+  useEffect(() => {
+    const searchQuery = queryString.parse(location.search);
+    const { search } = searchQuery;
 
-  render() {
-    const { productsList } = this.state;
+    if (search !== querySearch) {
+      setQuerySearch(search);
 
-    return (
-    <AppInnerPage classNames="search-results">
-      <ProductsList productsList={productsList} />
-    </AppInnerPage>
-  );
-  }
+      SearchService.getResults(search)
+        .then(({ items, categories }) => {
+          setProductsList(items);
+          setCategories(categories);
+        })
+    }
+  }, [location.search, querySearch]);
+
+  return (
+      <AppInnerPage classNames="search-results">
+         {
+           productsList &&
+             <ProductsList productsList={productsList} />
+         }
+         {
+           !productsList &&
+             <AppMainTitle title="Cargando resultados..." />
+         }
+       </AppInnerPage>
+   );
 }
 
 SearchResults.propTypes = {
   //
 };
 
-export default SearchResults;
+export default withRouter(SearchResults);

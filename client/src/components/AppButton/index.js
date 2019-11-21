@@ -6,14 +6,14 @@ import {PRIMARY_BUTTON, SECONDARY_BUTTON} from "components/AppButton/constants";
 
 import './styles.scss';
 
-function AppButton({ children, actionToExecute, type }) {
+function AppButton({ children, actionToExecute, buttonType, ...props }) {
   return (
     <button onClick={actionToExecute}
             className={classnames({
               'app-button': true,
-              'app-button--primary': type === PRIMARY_BUTTON,
-              'app-button--secondary': type === SECONDARY_BUTTON
-            })}>
+              'app-button--primary': buttonType === PRIMARY_BUTTON,
+              'app-button--secondary': buttonType === SECONDARY_BUTTON
+            })} {...props}>
       {children}
     </button>
   );
@@ -22,7 +22,7 @@ function AppButton({ children, actionToExecute, type }) {
 AppButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
   actionToExecute: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired
+  buttonType: PropTypes.oneOf([PRIMARY_BUTTON, SECONDARY_BUTTON]).isRequired
 };
 
 export default AppButton;
