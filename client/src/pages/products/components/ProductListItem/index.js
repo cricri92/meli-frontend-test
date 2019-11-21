@@ -18,7 +18,7 @@ function ProductListItem({ product }) {
     <li className="product-list-item">
       <Link to={productLink} className="product-list-item-link">
         <AppThumbnail
-          thumbnail={product.thumbnail}
+          thumbnail={product.picture}
           title={product.title}
           classNames="product-list-item__thumbnail" />
       </Link>
@@ -27,9 +27,8 @@ function ProductListItem({ product }) {
           <div className="product-info__item">
             <ProductPrice classNames="product-price--list"
                 price={product.price}
-                currency={product.currency_id}
                 priceAddons={
-                  product.shipping.free_shipping &&
+                  product.free_shipping &&
                     <AppIcon iconType={SHIPPING_ICON} description="Free shipping"/>
                 } />
           </div>
