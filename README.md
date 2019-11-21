@@ -2,13 +2,16 @@
 
 ## Instalación
 
-Ejecutar los comandos:
+1. Ejecutar los comandos:
 
-```$xslt
-npm install
-cd client
-npm install
-```
+    ```$xslt
+    npm install
+    cd client
+    npm install
+    ```
+
+1. Crea archivos `.env` en root del proyecto y en `client/`, tomando como ejemplo el archivo `.env.local.dist` (análogo a la sección, es decir, en el directorio `client` colocar en el .env la misma estructura del fichero `client/.env.local.dist`, en el directorio raíz de la app, colocar como `.env`, un fichero con la misma estructura del archivo `.env.local.dist`).
+
 
 ## Ejecución
 

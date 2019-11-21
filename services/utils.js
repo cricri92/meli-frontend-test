@@ -16,5 +16,14 @@ module.exports = {
 			error: `${result.error} (${result.status})`,
 			message: formatErrorMessage(result.status, resource, id)
 		}
+	},
+	handleResponse(result) {
+		return {
+			...result,
+			author: {
+				name: process.env.AUTHOR_NAME,
+				last_name: process.env.AUTHOR_LASTNAME
+			}
+		}
 	}
 };
