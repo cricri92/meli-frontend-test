@@ -14,7 +14,9 @@ function SearchBar() {
   const location = useLocation();
 
   let history = useHistory();
-  const [searchValue, setSearchValue] = useState(null);
+  const query = queryString.parse(location.search);
+  const [searchValue, setSearchValue] = useState(query.search);
+
   const searchActionCall = 'Nunca dejes de buscar';
 
   useEffect(() => {
@@ -45,7 +47,7 @@ function SearchBar() {
 
   return (
       <div className="search-bar">
-        <input type="text"
+        <input type="text" value={searchValue}
                onChange={e => handleInputChange(e)}
                placeholder={searchActionCall}
                onKeyPress={onKeyPressed} />
