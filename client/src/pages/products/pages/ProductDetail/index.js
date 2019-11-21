@@ -26,8 +26,8 @@ function ProductDetail() {
   useEffect(() => {
     if (!product) {
       ItemsService.getItem(id)
-      .then(product => {
-        setProduct(product)
+      .then(({ item, author }) => {
+        setProduct(item)
       }).catch(error => {
         console.log(error);
       });
