@@ -5,6 +5,7 @@ import AppInnerPage from "components/AppInnerPage";
 import AppThumbnail from "components/AppThumbnail";
 import AppMainTitle from "components/AppMainTitle";
 import AppButton from "components/AppButton";
+import AppBreadcrumb from "components/AppBreadcrumb";
 
 import {PRIMARY_BUTTON} from "components/AppButton/constants";
 import {PRODUCT_DETAIL_ADD_TO_CART_BUTTON_TEXT, PRODUCT_DETAIL_LOADING_TEXT} from "./constants";
@@ -38,7 +39,10 @@ function ProductDetail() {
   }
 
   return (
-        <AppInnerPage classNames="product-detail">
+        <AppInnerPage classNames="product-detail"
+          headerComponent={
+            product && !product.error && <AppBreadcrumb categories={product ? product.categories : null} />
+          }>
           {
             !product && <AppMainTitle title={PRODUCT_DETAIL_LOADING_TEXT} />
           }
