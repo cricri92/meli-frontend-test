@@ -9,7 +9,7 @@ import './styles.scss';
 function AppInnerPage({ classNames, children, headerComponent }) {
   return (
     <div className="app-inner-page container">
-        {headerComponent || <AppBreadcrumb />}
+        {headerComponent || <AppBreadcrumb categories={[]}/>}
         <div className={classnames({
           "app-inner-page__content container": true,
           [classNames]: classNames !== undefined

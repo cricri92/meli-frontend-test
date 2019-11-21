@@ -4,6 +4,7 @@ import {withRouter, useLocation} from "react-router-dom";
 
 import AppInnerPage from "components/AppInnerPage";
 import AppMainTitle from "components/AppMainTitle";
+import AppBreadcrumb from "components/AppBreadcrumb";
 
 import ProductsList from "pages/products/components/ProductsList";
 
@@ -33,7 +34,8 @@ function SearchResults() {
   }, [location.search, querySearch]);
 
   return (
-      <AppInnerPage classNames="search-results">
+      <AppInnerPage classNames="search-results"
+        headerComponent={productsList && <AppBreadcrumb categories={categories || []}/>}>
          {
            productsList &&
              <ProductsList productsList={productsList} />
